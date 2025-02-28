@@ -153,3 +153,14 @@ print(number_then_word_parser("123abc"))
 ## Excercise 11: Parse an alphanumeric string
 ### isalnum() is a plausible option here
 ### Complete this
+
+### Another abstraction: zip
+## zip is a higher order function
+def zip(parser_1: Parser, parser_2: Parser):
+    return parser_1.flat_map(lambda result_1: parser_2.map(lambda result_2: (result_1, result_2)))
+
+## You were manually doing this till now: Combining two parsers using flat_map and map
+letter_digit_parser_zip = zip(alpha_parser, digit_parser)
+assert(letter_digit_parser("a5") == letter_digit_parser_zip("a5"))
+
+## See?
